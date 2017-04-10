@@ -1,3 +1,4 @@
 *\.sw?
-mariadb/data/
+mariadb/data/*
 !mariadb/data/.gitkeep
+.env
