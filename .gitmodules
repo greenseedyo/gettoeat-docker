@@ -1,0 +1,3 @@
+[submodule "code/gettoeat-web"]
+	path = code/gettoeat-web
+	url = git@github.com:greenseedyo/gettoeat-web.git
