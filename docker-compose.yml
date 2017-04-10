@@ -1,0 +1,50 @@
+version: '2'
+
+services:
+    web:
+        image: nginx:latest
+        ports:
+            - "80:80"
+        volumes:
+            - ./code:/code
+            - ./nginx/conf.d:/etc/nginx/conf.d
+        networks:
+            - default
+    php:
+        build: build/php
+        volumes:
+            - ./code:/code
+        networks:
+            - default
+    composer:
+        image: composer/composer:php7
+        command: install
+        volumes:
+            - ./code:/code
+    mariadb:
+        build: build/mariadb
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./mariadb/data/mysql:/var/lib/mysql:rw
+            - ./mariadb/mysql/conf.d:/etc/mysql/conf.d
+            - ./mariadb/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+        environment:
+            - MYSQL_ROOT_PASSWORD=root_pass
+            - MYSQL_DATABASE=gettoeat
+        networks:
+            - default
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        networks:
+            - default
+        ports:
+            - "81:80"
+        environment:
+            - PMA_USER=root
+            - PMA_PASSWORD=root_pass
+            - PMA_HOSTS=mariadb
+
+networks:
+    default:
+        driver: bridge
