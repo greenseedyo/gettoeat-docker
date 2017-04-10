@@ -12,6 +12,8 @@ services:
             - default
     php:
         build: build/php
+        environment:
+            - "ENV=${ENV}"
         volumes:
             - ./code:/code
         networks:
