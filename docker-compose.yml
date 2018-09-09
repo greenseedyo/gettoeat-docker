@@ -14,6 +14,7 @@ services:
         build: build/php
         environment:
             - "ENV=${ENV}"
+            - MYSQL_ROOT_PASSWORD=root_pass
         volumes:
             - ./code:/code
         networks:
