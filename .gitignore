@@ -3,3 +3,4 @@ mariadb/data/*
 !mariadb/data/.gitkeep
 .env
 fingerprint.txt
+code/gettoeat-web
