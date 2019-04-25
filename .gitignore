@@ -4,3 +4,5 @@ mariadb/data/*
 .env
 fingerprint.txt
 code/gettoeat-web
+nginx/ssl/*.pem
+nginx/ssl/server.*
